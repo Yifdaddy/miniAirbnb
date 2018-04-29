@@ -1,0 +1,39 @@
+<% include partials/header %>
+
+<div class = "container">
+<header class="jumbotron">
+    <div class = "container">
+        <h1>Welcome to fake Campgrounds</h1>
+        <p>Fake Campgrounds from all over the World</p>
+    </div>
+</header>
+
+<div class="row" style="display:flex; flex-wrap: wrap;">
+    <div class="col-lg-12">
+        <h1>This is the campgrounds page</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-sm-6">
+        <% campgrounds.forEach(function(campground){ %>
+        <div class = "thumbnail">
+            <h4><%= campground.name %></h4>
+        </div>
+        <div class = "caption">
+            <img src="<%= campground.image%>">
+        </div>
+
+        <% }); %>
+    </div>
+</div>
+
+
+
+<p></p>
+<a  class = "btn btn-primary btn-lg" href = "/campgrounds/new">Click Here to Add a New Campgrounds</a>
+
+<p></p>
+<a class = "btn btn-primary btn-lg" href="/campgrounds/old">Click Here to Delete the Most Recent One</a>
+<% include partials/footer %>
+</div>
