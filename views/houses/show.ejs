@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p>House</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnnail">
+                <img class="img-responsive" src="<%= house.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$<%= house.price %>/Night</h4>
+                    <h4><a><%= house.name %></a></h4>
+                    <p><%= house.description %></p>
+                    <p>Created by <em><%=house.writer.username%></em></p>
+                    <% if (currentUser && house.writer.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-warning" href="/houses/<%= house._id %>/edit">Edit Info</a>
+                        <form id="delete-form" action="/houses/<%= house._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <div clss="well">
+                <div class="text-right">
+                    <p>
+                    <a class= "btn btn-success" href="/houses/<%= house._id %>/comments/new">Tell Us How Do You Think</a>
+                    </p>
+                </div>
+                <% house.comments.forEach(function(comment){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                    <em><strong><%= comment.writer.username %></strong></em>                     
+                    <span class="pull-right">10 Days ago</span>
+                    <p><%= comment.text %></em></p>
+                    <% if (currentUser && comment.writer.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-xs btn-warning" href="/houses/<%=house._id %>/comments/<%= comment._id %>/edit">
+                            Edit Comment
+                        </a>
+                        <form id="delete-form" action="/houses/<%=house._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                        
+                        </form>
+                    <% } %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

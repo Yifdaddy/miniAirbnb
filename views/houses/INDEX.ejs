@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To Airbnb</h1>
+             <p>View the top-booked nice houses all over the world</p>
+             <p>
+                <a class="btn btn-primary btn-large" href="/houses/new">Add New Houses</a>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% houses.forEach(function(house){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= house.image %>">
+                   <div class="caption">
+                       <h4><%= house.name %></h4>
+                   </div>
+                   <p>
+                       <a href = "/houses/<%= house._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>
