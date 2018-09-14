@@ -7,10 +7,18 @@
              <p>
                 <a class="btn btn-primary btn-large" href="/houses/new">Add New Houses</a>
              </p>
+             <p>
+                 <form action "/houses" method = "GET" class = "form-inline">
+                     <div class = "form-group">
+                         <input type = "text" name = "search" placeholder = "Search the place..." class = "form-control">
+                         <input type = "submit" value = "search" class = "form-control"> 
+                     </div>
+                 </form>
+             </p>
          </div>
      </header>
      
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+     <div class="row text-center flex-wrap" >
         <% houses.forEach(function(house){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
