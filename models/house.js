@@ -3,6 +3,7 @@ var houseSchema = new mongoose.Schema({
    name: String,
    image: String,
    description: String,
+   location: String,
    writer: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
