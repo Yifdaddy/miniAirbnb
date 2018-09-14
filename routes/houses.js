@@ -2,30 +2,43 @@ var express =require("express");
 var router = express.Router();
 var House = require("../models/house");
 router.get("/houses", function(req, res){
-    
     // Get all houses from mongodb
-    House.find({}, function(err, allhouses) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("houses/INDEX",{houses:allhouses, currentUser: req.user});
-        }
-    });
+    if  (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), "gi");
+        House.find({"name": regex}, function(err, allhouses) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("houses/INDEX",{houses:allhouses, currentUser: req.user});
+            }
+        });
+    } else {
+        House.find({}, function(err, allhouses) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("houses/INDEX",{houses:allhouses, currentUser: req.user});
+            }
+        });
+    } 
+        
     
     //res.render("houses",{houses:houses});
 });
 
 router.post("/houses", isLogin, function(req, res){
     // get data from form and add to houses array
+    //console.log(req.body.location);
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
+    var location = req.body.location;
     var writer = {
         id: req.user._id,
         username:req.user.username
     };
     var price = req.body.price;
-    var newHouse = {name: name, image: image, description: description, writer: writer, price: price};
+    var newHouse = {name: name, image: image, description: description, writer: writer, price: price, location: location};
     
     //houses.push(newHouse);
     //Create a new campground and save
@@ -97,6 +110,10 @@ router.delete("/houses/:id", check, function(req, res) {
         }
     });
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*\?.,\\^$!#\s]/g, "\\$&");
+}
 
 function isLogin(req, res, next) {
     if(req.isAuthenticated()) {
