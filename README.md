@@ -6,4 +6,4 @@ Airbnb Simulation
 * The infos of properties on page are COPIED from Airbnb.com
 * Deployed to Heroku
 * Used mLab as database
-* https://stark-depths-51256.herokuapp.com/houses
+* https://stark-depths-51256.herokuapp.com
