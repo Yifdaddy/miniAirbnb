@@ -1,9 +1,44 @@
-<% include ../partials/header %>
 
-<h1>Landing Page!</h1>
+<!--<h1>Landing Page!</h1>
 
 <p>Welcome to Airbnb Simulator</p>
 
-<a href="/houses">View All Houses</a>
+<a href="/houses">View All Houses</a>-->
 
-<% include ../partials/footer %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Airbnb</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/landing.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+    <body>
+    
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+    
+    <div id="landing-header">
+ 		<h1>Welcome to miniAirbnb</h1>
+		<a href="/houses" class="btn btn-lg btn-success">View All Houses</a>
+    </div>
+    
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+<% include ./partials/footer %>

@@ -4,7 +4,8 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var localStrategy = require("passport-local")
-mongoose.connect("mongodb://localhost/camp");
+//mongoose.connect("mongodb://localhost/camp");  //This is for connecting the local database
+mongoose.connect("mongodb://yifdaddy:1qaz2wsx@ds147592.mlab.com:47592/miniairbnb")
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -36,7 +37,7 @@ app.use(function(req, res, next) {
     res.locals.success = req.flash("success");
     next();
 });
-app.use(indexRoutes);
+app.use('/', indexRoutes);
 app.use(commentRoutes);
 app.use(houseRoutes);
 
